@@ -4,17 +4,22 @@
 <h3>Toys</h3>
 
 <TelerikGrid Data="@Products" Size="@ThemeConstants.Grid.Size.Medium">
-
     <GridColumns>
         <GridColumn Field="@nameof(ProductModel.Id)"></GridColumn>
         <GridColumn Field="@nameof(ProductModel.Title)" Title="Header"></GridColumn>
         <GridColumn Field="@nameof(ProductModel.Description)" Title="Summary"></GridColumn>
-        <GridCommandColumn Context="context">
-            <NavLink 
-                class="nav-link"
-                href="@((context as ProductModel).ImageSource)"
-                target = "_blank"
-            >Show More</NavLink>
-        </GridCommandColumn>
+        
+        <GridColumn Context="context">
+            <Template >
+                <NavLink class="nav-link"
+                         href="@((context as ProductModel).ImageSource)"
+                         target="_blank">
+                         <TelerikButton 
+                             ButtonType="ButtonType.Button" 
+                             ThemeColor="info">Show More
+                         </TelerikButton>                        
+                </NavLink>
+            </Template>
+        </GridColumn>
     </GridColumns>
 </TelerikGrid>
