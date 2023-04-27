@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using OnBoardingProject.Common.Models;
+using OnBoardingProject.UI.Services;
 using System.Net.Http.Json;
 namespace OnBoardingProject.UI.Pages
 {
@@ -9,11 +10,11 @@ namespace OnBoardingProject.UI.Pages
 
 
         [Inject]
-        HttpClient HttpClient { get; set; }    //todo: add service   
+        ProductsService ProductsService { get; set; }
       
         protected override async Task OnInitializedAsync()
         {
-            Products = await HttpClient.GetFromJsonAsync<IEnumerable<ProductModel>>("Products");
+            Products = await ProductsService.GetProducts();
         }       
     }
 }

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using OnBoardingProject.Common.Models;
 using OnBoardingProject.UI.Services;
-using System.Net.Http.Json;
 
 namespace OnBoardingProject.UI.Pages
 {
@@ -10,7 +9,7 @@ namespace OnBoardingProject.UI.Pages
         public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
 
         [Inject]
-        HttpClient HttpClient { get; set; }
+        ProductsService ProductsService { get; set; }
 
         [Inject]
         StateManager StateManager { get; set; }
@@ -21,7 +20,7 @@ namespace OnBoardingProject.UI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Products = await HttpClient.GetFromJsonAsync<IEnumerable<ProductModel>>("Products");
+            Products = await ProductsService.GetProducts();
         }
 
         private void ShowModal(ProductModel product)
