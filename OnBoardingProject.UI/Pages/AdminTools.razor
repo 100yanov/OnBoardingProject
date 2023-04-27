@@ -15,6 +15,7 @@
                          href="@((context as ProductModel).ImageSource)"
                          target="_blank">
                          <TelerikButton 
+                             OnClick="@StateManager.IncrementProductsReviewedCount"
                              ButtonType="ButtonType.Button" 
                              ThemeColor="info">Show More
                          </TelerikButton>                        
