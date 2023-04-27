@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using OnBoardingProject.Common.Models;
+using OnBoardingProject.UI.Services;
 using System.Net.Http.Json;
 
 namespace OnBoardingProject.UI.Pages
@@ -8,9 +9,12 @@ namespace OnBoardingProject.UI.Pages
     {
         public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
 
-
         [Inject]
         HttpClient HttpClient { get; set; }
+
+        [Inject]
+        StateManager StateManager { get; set; }
+
         private bool isModalVisible = false;
         private bool canChangePage = true;
         private ProductModel selectedProduct = new();
@@ -26,10 +30,16 @@ namespace OnBoardingProject.UI.Pages
             ModalShowChanged(true);
         }
 
+        private void OnShowModal(ProductModel product)
+        {
+            ShowModal(product);
+            StateManager.IncrementProductsReviewedCount();
+        }
+
         private void ModalShowChanged(bool currVisible)
         {
             isModalVisible = currVisible;
             canChangePage = !currVisible;
-         }
+        }
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using OnBoardingProject.Common.Models;
-using OnBoardingProject.UI.Services;
 using System.Net.Http.Json;
 namespace OnBoardingProject.UI.Pages
 {
@@ -11,9 +10,6 @@ namespace OnBoardingProject.UI.Pages
 
         [Inject]
         HttpClient HttpClient { get; set; }    //todo: add service   
-        
-        [Inject]
-        StateManager StateManager { get; set; } 
       
         protected override async Task OnInitializedAsync()
         {
