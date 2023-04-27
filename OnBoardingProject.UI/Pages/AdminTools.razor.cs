@@ -5,13 +5,13 @@ using System.Net.Http.Json;
 
 namespace OnBoardingProject.UI.Pages
 {
-    public partial class Toys
+    public partial class AdminTools
     {
         public IEnumerable<ProductModel> Products { get; set; } 
 
 
         [Inject]
-        HttpClient HttpClient { get; set; }        
+        HttpClient HttpClient { get; set; }    //todo: add service     
 
         protected override async Task OnInitializedAsync()
         {
