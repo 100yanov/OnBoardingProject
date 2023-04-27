@@ -1,0 +1,16 @@
+﻿@page "/admin" 
+@using OnBoardingProject.Common.Models;
+
+<h3>Toys</h3>
+
+<TelerikGrid Data="@Products" Context="contextModel" Size="@ThemeConstants.Grid.Size.Medium">    
+    
+    <GridColumns >
+        <GridColumn Field="@nameof(ProductModel.Id)"></GridColumn>
+        <GridColumn Field="@nameof(ProductModel.Title)" Title="Header"></GridColumn>
+        <GridColumn Field="@nameof(ProductModel.Description)" Title="Summary"></GridColumn>
+        <GridCommandColumn  Context="context">
+            <a href="@((context as ProductModel).ImageSource)" target="_blank">Show Image</a>
+        </GridCommandColumn>
+    </GridColumns>
+</TelerikGrid>

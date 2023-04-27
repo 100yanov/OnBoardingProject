@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<TelerikCarousel Data="@Products" Width="400px" Height="400px" Pageable="false" AutomaticPageChange="canChangePage">
+    <Template Context="carouselContext">
+        <TelerikCard>
+            <CardHeader>
+                <CardTitle>@(carouselContext.Title)</CardTitle>
+                </CardHeader>
+                <CardImage Src="@carouselContext.ImageSource" Height="300px"></CardImage>
+                <CardActions Layout="@CardActionsLayout.End">
+                    <TelerikButton Class="k-flat" OnClick="(_=>ShowModal(carouselContext))">Read More</TelerikButton>
+                </CardActions>
+            </TelerikCard>
+        </Template>
+    </TelerikCarousel>
+
+    <TelerikDialog 
+        Visible="@isModalVisible"
+        Title="@selectedProduct.Title"
+        VisibleChanged="@ModalShowChanged"
+        ShowCloseButton="true"
+        CloseOnOverlayClick="true">        
+        <DialogContent>
+            @selectedProduct.Description
+        </DialogContent>        
+    </TelerikDialog>
