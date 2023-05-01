@@ -1,8 +1,9 @@
 ﻿@page "/admin"
 @using OnBoardingProject.Common.Models;
+@inject NavigationManager NavManager
 
 <h3>Toys</h3>
-
+<TelerikButton Icon="FontIcon.Plus" ButtonType="ButtonType.Button" OnClick="@(_=> NavManager.NavigateTo("/add"))">Add Toy</TelerikButton>
 <TelerikGrid Data="@Products" Size="@ThemeConstants.Grid.Size.Medium">
     <GridColumns>
         <GridColumn Field="@nameof(ProductModel.Id)"></GridColumn>

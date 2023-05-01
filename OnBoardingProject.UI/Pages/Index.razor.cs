@@ -20,7 +20,7 @@ namespace OnBoardingProject.UI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Products = await ProductsService.GetProducts();
+            Products = await ProductsService.GetProductsAsync();
         }
 
         private void ShowModal(ProductModel product)

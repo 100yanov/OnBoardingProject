@@ -1,0 +1,13 @@
+﻿@page "/add"
+@using OnBoardingProject.Common.Enums;
+
+<h3>Add Toy</h3>
+
+<TelerikForm OnSubmit="OnSubmit" Model="@Product">
+    <FormItems>
+        <FormItem Field="@nameof(Product.Title)"></FormItem>
+        <FormItem Field="@nameof(Product.Description)"></FormItem>
+        <FormItem Field="@nameof(Product.ImageSource)"></FormItem>
+        <FormItem Field="@nameof(Product.Category)"></FormItem>
+    </FormItems>
+</TelerikForm>

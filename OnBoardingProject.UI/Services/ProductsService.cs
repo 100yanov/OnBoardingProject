@@ -11,9 +11,14 @@ namespace OnBoardingProject.UI.Services
             this.httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ProductModel>> GetProducts()
+        public async Task<IEnumerable<ProductModel>> GetProductsAsync()
         {
             return await httpClient.GetFromJsonAsync<IEnumerable<ProductModel>>("Products");
+        }
+
+        public async Task AddProductAsync(ProductModel product)
+        {
+            await httpClient.PostAsJsonAsync("Products", product);
         }
     }
 }
