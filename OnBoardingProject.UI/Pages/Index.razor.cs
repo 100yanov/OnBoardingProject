@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Components;
+using OnBoardingProject.Common.Enums;
 using OnBoardingProject.Common.Models;
 using OnBoardingProject.UI.Services;
+using Telerik.DataSource.Extensions;
+using System.Linq;
 
 namespace OnBoardingProject.UI.Pages
 {
     public partial class Index : ComponentBase
     {
-        public IEnumerable<ProductModel> Products { get; set; } = new List<ProductModel>();
+        private IEnumerable<ProductModel> products = new List<ProductModel>();
+        private IEnumerable<ProductModel> filteredProducts = new List<ProductModel>();
 
         [Inject]
         ProductsService ProductsService { get; set; }
@@ -18,9 +22,17 @@ namespace OnBoardingProject.UI.Pages
         private bool canChangePage = true;
         private ProductModel selectedProduct = new();
 
+        private readonly Dictionary<int, string> selectOptions = new();
+        private int selectedCategory;
+
         protected override async Task OnInitializedAsync()
         {
-            Products = await ProductsService.GetProductsAsync();
+            selectOptions[-1] = "All";
+            selectOptions.AddRange(Enum.GetValues<ProductCategory>()
+                .Select(p => new KeyValuePair<int, string>((int)p, p.ToString())));
+
+            products = await ProductsService.GetProductsAsync();
+            FilterProducts();
         }
 
         private void ShowModal(ProductModel product)
@@ -39,6 +51,16 @@ namespace OnBoardingProject.UI.Pages
         {
             isModalVisible = currVisible;
             canChangePage = !currVisible;
+        }
+
+        private void FilterChanged()
+        {
+            FilterProducts();
+        }
+
+        private void FilterProducts()
+        {
+            filteredProducts = products.Where(p => selectedCategory == -1 || (int)p.Category == selectedCategory);
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿@page "/"
+@using OnBoardingProject.Common.Enums;
 
 <PageTitle>Index</PageTitle>
+<TelerikDropDownList  Data="@selectOptions" Context="context" TextField="Value" ValueField="Key" @bind-Value="@selectedCategory" OnChange="FilterChanged"/>
 
-<TelerikCarousel Data="@Products" Width="400px" Height="400px" Pageable="false" AutomaticPageChange="canChangePage">
+<TelerikCarousel Data="@filteredProducts" Width="400px" Height="400px" Pageable="false" AutomaticPageChange="canChangePage">
     <Template Context="carouselContext">
         <TelerikCard>
             <CardHeader>
