@@ -3,7 +3,6 @@ using OnBoardingProject.Common.Enums;
 using OnBoardingProject.Common.Models;
 using OnBoardingProject.UI.Services;
 using Telerik.DataSource.Extensions;
-using System.Linq;
 
 namespace OnBoardingProject.UI.Pages
 {
@@ -23,7 +22,7 @@ namespace OnBoardingProject.UI.Pages
         private ProductModel selectedProduct = new();
 
         private readonly Dictionary<int, string> selectOptions = new();
-        private int selectedCategory;
+        private int selectedCategory = -1;
 
         protected override async Task OnInitializedAsync()
         {

@@ -42,12 +42,12 @@ namespace OnBoardingProject.API.Repositories
 
         public void Update(ProductModel entity)
         {
-            var product = GetById(entity.Id);
-            if (product is null)
-            {
-                throw new NotFoundException();
-            }
-            product = entity;
+            var product = GetById(entity.Id) ?? throw new NotFoundException();
+
+            product.Title = entity.Title;
+            product.Description = entity.Description;
+            product.ImageSource = entity.ImageSource;
+            product.Category = entity.Category;
         }
 
         public void SaveChanges()

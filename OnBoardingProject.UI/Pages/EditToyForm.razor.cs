@@ -37,7 +37,7 @@ namespace OnBoardingProject.UI.Pages
 
         private async Task OnSubmit()
         {
-            await ProductsService.AddProductAsync(Product);
+            await ProductsService.EditProductAsync(Product);
             StateHasChanged();
             NavigationManager.NavigateTo("admin");
         }
