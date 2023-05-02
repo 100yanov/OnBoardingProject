@@ -21,8 +21,19 @@
                          </TelerikButton>                        
                 </NavLink>
                 <TelerikButton Icon="FontIcon.Pencil" ButtonType="ButtonType.Button" OnClick="@(_=> NavManager.NavigateTo($"/edit/{(context as ProductModel).Id}"))">Edit</TelerikButton>
-                <TelerikButton ButtonType="ButtonType.Button" ThemeColor="error" OnClick="_=>OnDelete((context as ProductModel).Id)">Delete</TelerikButton>
+                <TelerikButton ButtonType="ButtonType.Button" ThemeColor="error" OnClick="_=>OnDelete((context as ProductModel))">Delete</TelerikButton>
             </Template>
         </GridColumn>
     </GridColumns>
 </TelerikGrid>
+
+<TelerikDialog Title="Confirm Deletion" CloseOnOverlayClick="true" Visible="showConfirmDialog">
+    <DialogContent>
+        @($"Are you sure you want to delete {product.Title}?")
+    </DialogContent>
+    <DialogButtons>
+        <TelerikButton OnClick="_=>showConfirmDialog=false" ThemeColor="basic">Cancel</TelerikButton>
+        <TelerikButton OnClick="Delete" ThemeColor="error">Yes, Delete!</TelerikButton>
+    </DialogButtons>
+    
+</TelerikDialog>
