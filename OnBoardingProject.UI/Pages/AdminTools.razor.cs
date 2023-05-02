@@ -15,6 +15,12 @@ namespace OnBoardingProject.UI.Pages
         protected override async Task OnInitializedAsync()
         {
             Products = await ProductsService.GetProductsAsync();
-        }       
+        }     
+        
+        private async Task OnDelete(Guid id)
+        {
+            await ProductsService.DeleteProductAsync(id);//todo: add confirm modal
+            StateHasChanged();
+        }
     }
 }

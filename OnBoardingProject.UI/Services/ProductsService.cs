@@ -15,10 +15,24 @@ namespace OnBoardingProject.UI.Services
         {
             return await httpClient.GetFromJsonAsync<IEnumerable<ProductModel>>("Products");
         }
+        public async Task<ProductModel> GetProductAsync(Guid id)
+        {
+            return await httpClient.GetFromJsonAsync<ProductModel>($"Products/{id}");
+        }
 
         public async Task AddProductAsync(ProductModel product)
         {
             await httpClient.PostAsJsonAsync("Products", product);
+        }
+
+        public async Task EditProductAsync(ProductModel product)
+        {
+            await httpClient.PutAsJsonAsync("Products", product);
+        }
+
+        public async Task DeleteProductAsync(Guid id)
+        {
+            await httpClient.DeleteAsync($"Products/{id}");            
         }
     }
 }

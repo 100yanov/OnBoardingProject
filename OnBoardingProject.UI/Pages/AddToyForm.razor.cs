@@ -6,13 +6,17 @@ namespace OnBoardingProject.UI.Pages
 {
     public partial class AddToyForm : ComponentBase
     {
-        public ProductModel Product { get; set; } = new();
         [Inject] ProductsService ProductsService { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }
 
+        public ProductModel Product { get; set; } = new();
+
+        
         private async Task OnSubmit()
         {
             await ProductsService.AddProductAsync(Product);
             StateHasChanged();
+            NavigationManager.NavigateTo("admin");
         }
     }
 }

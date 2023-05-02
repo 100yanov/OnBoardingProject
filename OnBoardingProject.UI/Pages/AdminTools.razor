@@ -4,7 +4,7 @@
 
 <h3>Toys</h3>
 <TelerikButton Icon="FontIcon.Plus" ButtonType="ButtonType.Button" OnClick="@(_=> NavManager.NavigateTo("/add"))">Add Toy</TelerikButton>
-<TelerikGrid Data="@Products" Size="@ThemeConstants.Grid.Size.Medium">
+<TelerikGrid Data="@Products" Size="@ThemeConstants.Grid.Size.Medium" FilterMode="Telerik.Blazor.GridFilterMode.FilterRow">
     <GridColumns>
         <GridColumn Field="@nameof(ProductModel.Id)"></GridColumn>
         <GridColumn Field="@nameof(ProductModel.Title)" Title="Header"></GridColumn>
@@ -20,6 +20,8 @@
                              ThemeColor="info">Show More
                          </TelerikButton>                        
                 </NavLink>
+                <TelerikButton Icon="FontIcon.Pencil" ButtonType="ButtonType.Button" OnClick="@(_=> NavManager.NavigateTo($"/edit/{(context as ProductModel).Id}"))">Edit</TelerikButton>
+                <TelerikButton ButtonType="ButtonType.Button" ThemeColor="error" OnClick="_=>OnDelete((context as ProductModel).Id)">Delete</TelerikButton>
             </Template>
         </GridColumn>
     </GridColumns>
